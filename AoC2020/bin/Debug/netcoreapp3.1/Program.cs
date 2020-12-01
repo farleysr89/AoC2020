@@ -15,7 +15,7 @@ namespace AoC2020
 
         static void Part1()
         {
-            string _input = File.ReadAllText("Input01.txt");
+            string _input = File.ReadAllText("Input.txt");
             List<int> entries = _input.Split('\n').Select(int.Parse).ToList();
             int x = 0;
             foreach (int i in entries)
