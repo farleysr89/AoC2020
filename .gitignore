@@ -5,3 +5,5 @@ AoC2020/bin/Debug/netcoreapp3.1/Program.cs
 AoC2020/bin/Debug/netcoreapp3.1/Day01.pdb
 AoC2020/bin/Debug/netcoreapp3.1/Day01.dll
 .vs/AoC2020/v16/.suo
+*.v2
+.vs/AoC2020/v16/.suo
