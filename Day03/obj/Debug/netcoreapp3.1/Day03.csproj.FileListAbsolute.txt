@@ -1,0 +1,14 @@
+C:\git\AoC2020\Day03\bin\Debug\netcoreapp3.1\Day03.exe
+C:\git\AoC2020\Day03\bin\Debug\netcoreapp3.1\Day03.deps.json
+C:\git\AoC2020\Day03\bin\Debug\netcoreapp3.1\Day03.runtimeconfig.json
+C:\git\AoC2020\Day03\bin\Debug\netcoreapp3.1\Day03.runtimeconfig.dev.json
+C:\git\AoC2020\Day03\bin\Debug\netcoreapp3.1\Day03.dll
+C:\git\AoC2020\Day03\bin\Debug\netcoreapp3.1\Day03.pdb
+C:\git\AoC2020\Day03\obj\Debug\netcoreapp3.1\Day03.csprojAssemblyReference.cache
+C:\git\AoC2020\Day03\obj\Debug\netcoreapp3.1\Day03.AssemblyInfoInputs.cache
+C:\git\AoC2020\Day03\obj\Debug\netcoreapp3.1\Day03.AssemblyInfo.cs
+C:\git\AoC2020\Day03\obj\Debug\netcoreapp3.1\Day03.csproj.CoreCompileInputs.cache
+C:\git\AoC2020\Day03\obj\Debug\netcoreapp3.1\Day03.dll
+C:\git\AoC2020\Day03\obj\Debug\netcoreapp3.1\Day03.pdb
+C:\git\AoC2020\Day03\obj\Debug\netcoreapp3.1\Day03.genruntimeconfig.cache
+C:\git\AoC2020\Day03\bin\Debug\netcoreapp3.1\input.txt
