@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\farle\\OneDrive\\Documents\\GitHub\\AoC2020\\Day03\\Day03.csproj",
-      "projectName": "Day03",
-      "projectPath": "C:\\Users\\farle\\OneDrive\\Documents\\GitHub\\AoC2020\\Day03\\Day03.csproj",
+      "projectUniqueName": "C:\\Users\\farle\\OneDrive\\Documents\\GitHub\\AoC2020\\Day05\\Day05.csproj",
+      "projectName": "Day05",
+      "projectPath": "C:\\Users\\farle\\OneDrive\\Documents\\GitHub\\AoC2020\\Day05\\Day05.csproj",
       "packagesPath": "C:\\Users\\farle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\farle\\OneDrive\\Documents\\GitHub\\AoC2020\\Day03\\obj\\",
+      "outputPath": "C:\\Users\\farle\\OneDrive\\Documents\\GitHub\\AoC2020\\Day05\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\farle\\AppData\\Roaming\\NuGet\\NuGet.Config",

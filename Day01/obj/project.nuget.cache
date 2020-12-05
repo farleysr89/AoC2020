@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bPlD0IPYeoMDckcWzEboBc+BMtwT59thjbThH9lnJimGrLWNXFK04X7U2rrn7bgBNC90tRnsuaaCQ4N+B2D+qg==",
+  "dgSpecHash": "5+haqwWUCd6/0uDC8+ajD+gSc07ksoIjq1XSEMKPAT0vWVPJlmnMDlLGgygKSv5ZLxHtH/wkImPIhPMBwSHLIA==",
   "success": true,
-  "projectFilePath": "C:\\git\\AoC2020\\Day01\\Day01.csproj",
+  "projectFilePath": "C:\\Users\\farle\\OneDrive\\Documents\\GitHub\\AoC2020\\Day01\\Day01.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
