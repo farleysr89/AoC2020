@@ -34,7 +34,7 @@ namespace Day06
                     }
                 }
             }
-            Console.WriteLine("Count = " + forms.Select(f => f.Count).Sum());
+            Console.WriteLine("Count Part1 = " + forms.Select(f => f.Count).Sum());
         }
 
         static void SolvePart2()
@@ -74,7 +74,7 @@ namespace Day06
                 }
             }
 
-            Console.WriteLine("Count = " + count);
+            Console.WriteLine("Count Part2 = " + count);
         }
     }
 }
