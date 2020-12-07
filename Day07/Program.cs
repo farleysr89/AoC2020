@@ -9,7 +9,7 @@ namespace Day07
     {
         static void Main(string[] args)
         {
-            //SolvePart1();
+            SolvePart1();
             SolvePart2();
         }
         static void SolvePart1()
@@ -79,7 +79,7 @@ namespace Day07
             }
 
             long count = 0;                
-            count = CountBags(bags.First(b => b.color == "vibrant green"), bags, count);            
+            count = CountBags(bags.First(b => b.color == "shiny gold"), bags, count);            
             Console.WriteLine("Number of bags in one shiny golden bag = " + count);
         }
 
@@ -102,8 +102,10 @@ namespace Day07
             }
             foreach(var o in b.containedBags)
             {
-                var tmp = new HashSet<string>(candidates);
-                tmp.Add(b.color);
+                var tmp = new HashSet<string>(candidates)
+                {
+                    b.color
+                };
                 solutions.UnionWith(ProcessBag(bags.First(x => x.color == o.color), solutions, tmp, bags));
             }
             return solutions;
@@ -112,10 +114,10 @@ namespace Day07
         static long CountBags(Bag b, List<Bag> bags, long count)
         {
             long tmpCount = count;
-            if(b.containedBags.Count == 0) return 1;
+            if(b.containedBags.Count == 0) return 0;
             foreach (var o in b.containedBags)
             {
-                count += CountBags(bags.First(x => x.color == o.color), bags, tmpCount) * o.count;
+                count += CountBags(bags.First(x => x.color == o.color), bags, tmpCount) * o.count + o.count;
             }
             return count;
         }
