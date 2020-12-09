@@ -9,10 +9,10 @@ namespace Day09
     {
         static void Main(string[] args)
         {
-            SolvePart1();
-            SolvePart2();
+            long goal = SolvePart1();
+            SolvePart2(goal);
         }
-        static void SolvePart1()
+        static long SolvePart1()
         {
             string _input = File.ReadAllText("Input.txt");
             long[] nums = _input.Split('\n').Select(x => long.Parse(x)).ToArray();
@@ -51,10 +51,28 @@ namespace Day09
 
             }
             Console.WriteLine("Illegal number is " + n);
+            return n;
         }
-        static void SolvePart2()
+        static void SolvePart2(long goal)
         {
             string _input = File.ReadAllText("Input.txt");
+            long[] nums = _input.Split('\n').Select(x => long.Parse(x)).ToArray();
+            int begin = 0;
+            int count = 1;
+            long[] arr = null;
+            while (true)
+            {
+                arr = nums.Skip(begin).Take(count).ToArray();
+                long tmp = arr.Sum();
+                if (tmp == goal) break;
+                if (tmp < goal) count++;
+                else if (tmp > goal)
+                {
+                    begin++;
+                    count--;
+                }
+            }
+            Console.WriteLine("Solution = " + (arr.Min() + arr.Max()));
         }
     }
 }
