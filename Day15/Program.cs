@@ -46,11 +46,41 @@ namespace Day15
                 count++;
             }
             Console.WriteLine("2020th Number is = " + prev);
-
         }
         static void SolvePart2()
         {
             string _input = File.ReadAllText("Input.txt");
+            List<int> nums = _input.Split(",").Select(s => int.Parse(s)).ToList();
+            int count = 1;
+            Dictionary<int, Number> calledNums = new Dictionary<int, Number>();
+            int prev = 0;
+            foreach (var i in nums)
+            {
+                calledNums.Add(i, new Number { history = new Queue<int>(new[] { count }) });
+                count++;
+                prev = i;
+            }
+            while (count <= 30000000)
+            {
+                if (calledNums[prev].history.Count == 1) prev = 0;
+                else
+                {
+                    var occ = calledNums[prev].history.ToArray();
+                    var dif = Math.Abs(occ[0] - occ[1]);
+                    prev = dif;
+                }
+
+                if (calledNums.ContainsKey(prev))
+                {
+                    calledNums[prev].Add(count);
+                }
+                else
+                {
+                    calledNums.Add(prev, new Number { history = new Queue<int>(new[] { count }) });
+                }
+                count++;
+            }
+            Console.WriteLine("30,000,000th Number is = " + prev);
         }
     }
     public class Number
