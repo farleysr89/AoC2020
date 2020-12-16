@@ -71,7 +71,6 @@ namespace Day16
             List<Rule> rules = new List<Rule>();
             List<Ticket> tickets = new List<Ticket>();
             bool rulesDone = false;
-            int invalidTotal = 0;
             foreach (var s in data)
             {
                 if (rulesDone == false)
@@ -116,7 +115,44 @@ namespace Day16
                 }
             }
             tickets = tickets.Where(t => t.valid).ToList();
-            Console.WriteLine("Invalid total = " + invalidTotal);
+            HashSet<string>[] validators = new HashSet<string>[20];
+            var ruleList = rules.Select(r => r.title);
+            for (int i = 0; i < 20; i++)
+            {
+                validators[i] = ruleList.ToHashSet();
+            }
+            foreach (var t in tickets)
+            {
+                int i = 0;
+                foreach (var v in t.values)
+                {
+                    foreach (var r in rules.Where(x => validators[i].Contains(x.title)))
+                    {
+                        if (!r.ranges.Any(rr => v >= rr.Item1 && v <= rr.Item2)) validators[i].Remove(r.title);
+                    }
+                    i++;
+                }
+            }
+            bool any = true;
+            while (any)
+            {
+                any = false;
+                foreach (var v in validators.Where(x => x.Count == 1))
+                {
+                    foreach (var vv in validators.Where(vv => vv != v && vv.Contains(v.First())))
+                    {
+                        vv.Remove(v.First());
+                        any = true;
+                    }
+                }
+            }
+            long departTotal = 1;
+            var tick = tickets.Where(t => t.mine).First();
+            for (int i = 0; i < 20; i++)
+            {
+                if (validators[i].First().Contains("departure")) departTotal *= tick.values[i];
+            }
+            Console.WriteLine("Invalid total = " + departTotal);
         }
     }
     class Rule
