@@ -71,7 +71,46 @@ namespace Day20
         {
             string _input = File.ReadAllText("Input.txt");
             List<string> data = _input.Split('\n').ToList();
-            Console.WriteLine("");
+            List<string> image = new List<String>();
+            var t = new Tile();
+            List<Tile> tiles = new List<Tile>();
+            int count = 0;
+            foreach (var s in data)
+            {
+                if (s == "")
+                {
+                    count = 0;
+                    t.image = image.ToArray();
+                    image = new List<string>();
+                    tiles.Add(t);
+                    t = new Tile();
+                    continue;
+                }
+                if (s.Contains("Tile"))
+                {
+                    var l = s.Split(" ")[1].Split(":");
+                    t.id = int.Parse(l[0]);
+                }
+                else
+                {
+                    if (count != 0 && count != 9)
+                        image.Add(s.Substring(1, 8));
+                    count++;
+                }
+            }
+            count = 0;
+            foreach (var tile in tiles)
+            {
+                foreach (var s in tile.image)
+                {
+                    foreach (var c in s)
+                    {
+                        if (c == '#') count++;
+                    }
+                }
+            }
+
+            Console.WriteLine("Total count is " + count);
         }
     }
     class Tile
