@@ -106,7 +106,6 @@ namespace Day21
             while (finalMapping.Any(x => x.Value.Count > 1))
             {
                 var tmp = new Dictionary<string, List<string>>(finalMapping);
-                //var tmp2 = new Dictionary<string, List<string>>(finalMapping);
                 foreach (var i in finalMapping.Where(f => f.Value.Count == 1))
                 {
                     var key = i.Key;
@@ -124,7 +123,7 @@ namespace Day21
             {
                 ss += a.Value.First() + ",";
             }
-            Console.WriteLine("Allergens = " + ss);
+            Console.WriteLine("Allergens = " + ss[0..^1]);
         }
     }
 }
