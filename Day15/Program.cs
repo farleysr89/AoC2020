@@ -7,7 +7,7 @@ namespace Day15
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             SolvePart1();
             SolvePart2();
