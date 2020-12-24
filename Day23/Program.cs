@@ -26,8 +26,8 @@ namespace Day23
                 index++;
             }
             var cur = cups.First();
-            var next = cur == 1 ? 9 : cur - 1;
-            int goal = 10;
+            var dest = cur == 1 ? 9 : cur - 1;
+            int goal = 100;
             index = 0;
             for (int i = 0; i < goal; i++)
             {
@@ -38,21 +38,20 @@ namespace Day23
                     moves += s[index + 1];
                     s = s.Remove(index + 1, 1);
                 }
-                while (!s.Contains(next.ToString()))
+                while (!s.Contains(dest.ToString()))
                 {
-                    next = next == 1 ? 9 : next - 1;
+                    dest = dest == 1 ? 9 : dest - 1;
                 }
-                Console.WriteLine(origS);
-                Console.WriteLine(moves);
-                Console.WriteLine(next);
-                Console.WriteLine("------------------");
-                var nextIndex = s.IndexOf(next.ToString());
-                s = s.Remove(nextIndex, 1);
-                s = next.ToString() + moves + s[1..] + s[0];
+                s = s.Insert(s.IndexOf(dest.ToString()) + 1, moves);
+                s = ShiftString(s);
                 cur = int.Parse(s[0].ToString());
-                next = cur == 1 ? 9 : cur - 1;
+                dest = cur == 1 ? 9 : cur - 1;
             }
-            Console.WriteLine("Final Output is " + s);
+            while (s[0] != '1')
+            {
+                s = ShiftString(s);
+            }
+            Console.WriteLine("Final Output is " + s[1..]);
         }
 
         static void SolvePart2()
@@ -60,6 +59,11 @@ namespace Day23
             string _input = File.ReadAllText("Input.txt");
             List<string> data = _input.Split('\n').ToList();
             Console.WriteLine("");
+        }
+        // Function from here: https://stackoverflow.com/questions/15053461/shifting-a-string-in-c-sharp
+        public static string ShiftString(string t)
+        {
+            return t[1..] + t.Substring(0, 1);
         }
     }
 }
