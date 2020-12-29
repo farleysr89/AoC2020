@@ -68,7 +68,7 @@ namespace Day24
                 else tiles[(x, y)] = true;
             }
             Console.WriteLine("First count = " + tiles.Where(t => t.Value).Count());
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i < 100; i++)
             {
                 var tmp = new Dictionary<(int, int), bool>(tiles);
                 foreach (var kv in tiles)
@@ -80,7 +80,7 @@ namespace Day24
                     }
                     else
                     {
-                        tmp[(kv.Key.Item1 - 1, kv.Key.Item2)] = false;
+                        tmp[(kv.Key.Item1 + 1, kv.Key.Item2)] = false;
                     }
                     if (tiles.ContainsKey((kv.Key.Item1 - 1, kv.Key.Item2)))
                     {
@@ -96,7 +96,7 @@ namespace Day24
                     }
                     else
                     {
-                        tmp[(kv.Key.Item1, kv.Key.Item2 - 1)] = false;
+                        tmp[(kv.Key.Item1, kv.Key.Item2 + 1)] = false;
                     }
                     if (tiles.ContainsKey((kv.Key.Item1, kv.Key.Item2 - 1)))
                     {
