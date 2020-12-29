@@ -62,12 +62,13 @@ namespace Day24
                     }
                     else if (c == 'w') x -= 1;
                     else if (c == 'e') x += 1;
-                    if (!tiles.ContainsKey((x, y))) tiles[(x, y)] = false;
+                    //if (!tiles.ContainsKey((x, y))) tiles[(x, y)] = false;
                 }
                 if (tiles.ContainsKey((x, y))) tiles[(x, y)] = !tiles[(x, y)];
                 else tiles[(x, y)] = true;
             }
             Console.WriteLine("First count = " + tiles.Where(t => t.Value).Count());
+            tiles = Populate(tiles);
             for (int i = 1; i < 100; i++)
             {
                 var tmp = new Dictionary<(int, int), bool>(tiles);
@@ -78,50 +79,50 @@ namespace Day24
                     {
                         if (tiles[(kv.Key.Item1 + 1, kv.Key.Item2)] == true) count++;
                     }
-                    else
-                    {
-                        tmp[(kv.Key.Item1 + 1, kv.Key.Item2)] = false;
-                    }
+                    //else
+                    //{
+                    //    tmp[(kv.Key.Item1 + 1, kv.Key.Item2)] = false;
+                    //}
                     if (tiles.ContainsKey((kv.Key.Item1 - 1, kv.Key.Item2)))
                     {
                         if (tiles[(kv.Key.Item1 - 1, kv.Key.Item2)] == true) count++;
                     }
-                    else
-                    {
-                        tmp[(kv.Key.Item1 - 1, kv.Key.Item2)] = false;
-                    }
+                    //else
+                    //{
+                    //    tmp[(kv.Key.Item1 - 1, kv.Key.Item2)] = false;
+                    //}
                     if (tiles.ContainsKey((kv.Key.Item1, kv.Key.Item2 + 1)))
                     {
                         if (tiles[(kv.Key.Item1, kv.Key.Item2 + 1)] == true) count++;
                     }
-                    else
-                    {
-                        tmp[(kv.Key.Item1, kv.Key.Item2 + 1)] = false;
-                    }
+                    //else
+                    //{
+                    //    tmp[(kv.Key.Item1, kv.Key.Item2 + 1)] = false;
+                    //}
                     if (tiles.ContainsKey((kv.Key.Item1, kv.Key.Item2 - 1)))
                     {
                         if (tiles[(kv.Key.Item1, kv.Key.Item2 - 1)] == true) count++;
                     }
-                    else
-                    {
-                        tmp[(kv.Key.Item1, kv.Key.Item2 - 1)] = false;
-                    }
+                    //else
+                    //{
+                    //    tmp[(kv.Key.Item1, kv.Key.Item2 - 1)] = false;
+                    //}
                     if (tiles.ContainsKey((kv.Key.Item1 + 1, kv.Key.Item2 + 1)))
                     {
                         if (tiles[(kv.Key.Item1 + 1, kv.Key.Item2 + 1)] == true) count++;
                     }
-                    else
-                    {
-                        tmp[(kv.Key.Item1 + 1, kv.Key.Item2 + 1)] = false;
-                    }
+                    //else
+                    //{
+                    //    tmp[(kv.Key.Item1 + 1, kv.Key.Item2 + 1)] = false;
+                    //}
                     if (tiles.ContainsKey((kv.Key.Item1 - 1, kv.Key.Item2 - 1)))
                     {
                         if (tiles[(kv.Key.Item1 - 1, kv.Key.Item2 - 1)] == true) count++;
                     }
-                    else
-                    {
-                        tmp[(kv.Key.Item1 - 1, kv.Key.Item2 - 1)] = false;
-                    }
+                    //else
+                    //{
+                    //    tmp[(kv.Key.Item1 - 1, kv.Key.Item2 - 1)] = false;
+                    //}
 
                     if (tiles[(kv.Key.Item1, kv.Key.Item2)])
                     {
@@ -134,9 +135,43 @@ namespace Day24
                 }
                 tiles = new Dictionary<(int, int), bool>(tmp);
                 Console.WriteLine(i + " count = " + tiles.Where(t => t.Value).Count());
+                tiles = Populate(tiles);
+                //Console.WriteLine(i + " count = " + tiles.Where(t => t.Value).Count());
             }
 
             Console.WriteLine("Final count = " + tiles.Where(t => t.Value).Count());
+        }
+        static Dictionary<(int, int), bool> Populate(Dictionary<(int, int), bool> orig)
+        {
+            var tmp = new Dictionary<(int, int), bool>(orig);
+            foreach (var kv in orig)
+            {
+                if (!tmp.ContainsKey((kv.Key.Item1 + 1, kv.Key.Item2)))
+                {
+                    tmp[(kv.Key.Item1 + 1, kv.Key.Item2)] = false;
+                }
+                if (!tmp.ContainsKey((kv.Key.Item1 - 1, kv.Key.Item2)))
+                {
+                    tmp[(kv.Key.Item1 - 1, kv.Key.Item2)] = false;
+                }
+                if (!tmp.ContainsKey((kv.Key.Item1, kv.Key.Item2 + 1)))
+                {
+                    tmp[(kv.Key.Item1, kv.Key.Item2 + 1)] = false;
+                }
+                if (!tmp.ContainsKey((kv.Key.Item1, kv.Key.Item2 - 1)))
+                {
+                    tmp[(kv.Key.Item1, kv.Key.Item2 - 1)] = false;
+                }
+                if (!tmp.ContainsKey((kv.Key.Item1 + 1, kv.Key.Item2 + 1)))
+                {
+                    tmp[(kv.Key.Item1 + 1, kv.Key.Item2 + 1)] = false;
+                }
+                if (!tmp.ContainsKey((kv.Key.Item1 - 1, kv.Key.Item2 - 1)))
+                {
+                    tmp[(kv.Key.Item1 - 1, kv.Key.Item2 - 1)] = false;
+                }
+            }
+            return tmp;
         }
     }
 }
