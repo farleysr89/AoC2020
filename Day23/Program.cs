@@ -18,7 +18,7 @@ namespace Day23
             string _input = File.ReadAllText("Input.txt");
             List<string> data = _input.Split('\n').ToList();
             string s = data[0];
-            HashSet<Cup> cups = new HashSet<Cup>();
+            Dictionary<long, Cup> cups = new Dictionary<long, Cup>();
             int index = 0;
             Cup prev = null, curr = null, first = null, begin = null;
             foreach (char c in s)
@@ -27,12 +27,12 @@ namespace Day23
                 if (curr.value == 1) first = curr;
                 if (prev != null) prev.next = curr;
                 else begin = curr;
-                cups.Add(curr);
+                cups.Add(curr.value, curr);
                 prev = curr;
                 index++;
             }
             curr.next = begin;
-            var cur = cups.First();
+            var cur = cups.First().Value;
 
             var dest = cur.value == 1 ? 9 : cur.value - 1;
             int goal = 100;
@@ -50,7 +50,7 @@ namespace Day23
                 //var destIndex = Array.IndexOf(cups, dest);
                 //s = s.Insert(s.IndexOf(dest.ToString()) + 1, moves);
                 //cups = cups[0..destIndex].Concat(moves).Concat(cups[destIndex..]).ToArray();
-                var destCup = cups.First(c => c.value == dest);
+                var destCup = cups[dest];
                 var n = destCup.next;
                 destCup.next = moves.First();
                 moves.Last().next = n;
@@ -114,7 +114,7 @@ namespace Day23
             string _input = File.ReadAllText("Input.txt");
             List<string> data = _input.Split('\n').ToList();
             string s = data[0];
-            HashSet<Cup> cups = new HashSet<Cup>();
+            Dictionary<long, Cup> cups = new Dictionary<long, Cup>();
             int index = 0;
             Cup prev = null, curr = null, first = null, begin = null;
             foreach (char c in s)
@@ -123,7 +123,7 @@ namespace Day23
                 if (curr.value == 1) first = curr;
                 if (prev != null) prev.next = curr;
                 else begin = curr;
-                cups.Add(curr);
+                cups.Add(curr.value, curr);
                 prev = curr;
                 index++;
             }
@@ -131,11 +131,11 @@ namespace Day23
             {
                 curr = new Cup { value = i + 1 };
                 prev.next = curr;
-                cups.Add(curr);
+                cups.Add(curr.value, curr);
                 prev = curr;
             }
             curr.next = begin;
-            var cur = cups.First();
+            var cur = cups.First().Value;
 
             var dest = cur.value == 1 ? 1000000 : cur.value - 1;
             int goal = 10000000;
@@ -153,7 +153,7 @@ namespace Day23
                 //var destIndex = Array.IndexOf(cups, dest);
                 //s = s.Insert(s.IndexOf(dest.ToString()) + 1, moves);
                 //cups = cups[0..destIndex].Concat(moves).Concat(cups[destIndex..]).ToArray();
-                var destCup = cups.First(c => c.value == dest);
+                var destCup = cups[dest];
                 var n = destCup.next;
                 destCup.next = moves.First();
                 moves.Last().next = n;
@@ -229,6 +229,6 @@ namespace Day23
     public class Cup
     {
         public Cup next;
-        public int value;
+        public long value;
     }
 }
