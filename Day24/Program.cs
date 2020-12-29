@@ -55,8 +55,8 @@ namespace Day24
                     if (c == 'n' || c == 's')
                     {
                         var cc = s[++i];
-                        if (c == 's' && cc == 'e') x++;
-                        if (c == 'n' && cc == 'w') x--;
+                        if (c == 's' && cc == 'w') x--;
+                        if (c == 'n' && cc == 'e') x++;
                         if (c == 'n') y++;
                         if (c == 's') y--;
                     }
@@ -67,9 +67,9 @@ namespace Day24
                 if (tiles.ContainsKey((x, y))) tiles[(x, y)] = !tiles[(x, y)];
                 else tiles[(x, y)] = true;
             }
-            Console.WriteLine("First count = " + tiles.Where(t => t.Value).Count());
-            //tiles = Populate(tiles);
-            for (int i = 1; i < 100; i++)
+            //Console.WriteLine("First count = " + tiles.Where(t => t.Value).Count());
+            tiles = Populate(tiles);
+            for (int i = 1; i <= 100; i++)
             {
                 var tmp = new Dictionary<(int, int), bool>(tiles);
                 foreach (var kv in tiles)
@@ -134,8 +134,8 @@ namespace Day24
                     }
                 }
                 tiles = new Dictionary<(int, int), bool>(tmp);
-                Console.WriteLine(i + " count = " + tiles.Where(t => t.Value).Count());
-                //tiles = Populate(tiles);
+                //Console.WriteLine(i + " count = " + tiles.Where(t => t.Value).Count());
+                tiles = Populate(tiles);
                 //Console.WriteLine(i + " count = " + tiles.Where(t => t.Value).Count());
             }
 
