@@ -58,12 +58,57 @@ namespace Day23
         {
             string _input = File.ReadAllText("Input.txt");
             List<string> data = _input.Split('\n').ToList();
-            Console.WriteLine("");
+            string s = data[0];
+            int[] cups = new int[1000000];
+            int index = 0;
+            foreach (char c in s)
+            {
+                cups[index] = int.Parse(c.ToString());
+                index++;
+            }
+            for (int i = index; i < 1000000; i++)
+            {
+                cups[i] = i + 1;
+            }
+            var cur = cups.First();
+            var dest = cur == 1 ? 1000000 : cur - 1;
+            int goal = 10000000;
+            for (int i = 0; i < goal; i++)
+            {
+                int[] moves = new int[3];
+                for (int x = 0; x < 3; x++)
+                {
+                    moves[x] = cups[1 + x];
+                }
+                var tmp = new int[1] { cups[0] };
+                cups = tmp.Concat(cups[4..]).ToArray();
+                while (moves.Contains(dest))
+                {
+                    dest = dest == 1 ? 1000000 : dest - 1;
+                }
+                var destIndex = Array.IndexOf(cups, dest);
+                //s = s.Insert(s.IndexOf(dest.ToString()) + 1, moves);
+                cups = cups[0..destIndex].Concat(moves).Concat(cups[destIndex..]).ToArray();
+                //s = ShiftString(s);
+                cups = ShiftArray(cups);
+                cur = int.Parse(s[0].ToString());
+                dest = cur == 1 ? 1000000 : cur - 1;
+            }
+            //while (cups[0] != 1)
+            //{
+            //    cups = ShiftArray(cups);
+            //}
+            var firstCup = Array.IndexOf(cups, 1);
+            Console.WriteLine("Final Output is " + cups[firstCup + 1] * cups[firstCup + 2]);
         }
         // Function from here: https://stackoverflow.com/questions/15053461/shifting-a-string-in-c-sharp
         public static string ShiftString(string t)
         {
             return t[1..] + t.Substring(0, 1);
+        }
+        public static int[] ShiftArray(int[] t)
+        {
+            return t[1..].Append(t[0]).ToArray();
         }
     }
 }
