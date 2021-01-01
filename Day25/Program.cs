@@ -24,13 +24,12 @@ namespace Day25
             long loopSizeB = LoopSize(publicKeyB);
             long answerA = GetEncryptionKey(publicKeyA, loopSizeB);
             long answerB = GetEncryptionKey(publicKeyB, loopSizeA);
-            Console.WriteLine("Encryption Key = " + answerA);
+            if (answerA != answerB) Console.WriteLine("Something broke!");
+            else Console.WriteLine("Encryption Key = " + answerA);
         }
 
         static void SolvePart2()
         {
-            string _input = File.ReadAllText("Input.txt");
-            List<string> data = _input.Split('\n').ToList();
             Console.WriteLine("");
         }
         static long LoopSize(long i)
